@@ -43,6 +43,8 @@ type NodeConfigSpec struct {
 	AptPackages modules.AptPackages `json:"aptPackages,omitempty"`
 	// List of blocks to add to files
 	BlockInFiles modules.BlockInFiles `json:"blockInFiles,omitempty"`
+	// List of Certificates to add to /etc/ssl/certs
+	Certificates modules.Certificates `json:"certificates,omitempty"`
 
 	// Defines the target nodes for this NodeConfig (optional, default is apply to all nodes)
 	NodeSelector []metav1.LabelSelectorRequirement `json:"nodeSelector,omitempty"`

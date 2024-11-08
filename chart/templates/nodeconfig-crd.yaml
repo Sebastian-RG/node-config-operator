@@ -313,6 +313,27 @@ spec:
                 - blocks
                 - state
                 type: object
+              certificates:
+                description: List of Certificates to add to /etc/ssl/certs
+                properties:
+                  certificates:
+                    items:
+                      properties:
+                        content:
+                          type: string
+                        filename:
+                          type: string
+                      required:
+                      - content
+                      - filename
+                      type: object
+                    type: array
+                  state:
+                    type: string
+                required:
+                - certificates
+                - state
+                type: object
               hosts:
                 description: List of hosts to install to /etc/hosts
                 properties:

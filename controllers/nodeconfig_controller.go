@@ -155,6 +155,16 @@ func (r *NodeConfigReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 		)
 	}
 
+	if len(nodeConfig.Spec.Certificates.Certificates) != 0 {
+		configs = append(
+			configs,
+			modules.CertificateConfig{
+				Certificates: nodeConfig.Spec.Certificates,
+				Log:          logger.WithName("certificates"),
+			},
+		)
+	}
+
 	if len(nodeConfig.Spec.SystemdOverrides.Overrides) != 0 {
 		configs = append(
 			configs,

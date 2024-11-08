@@ -53,6 +53,22 @@ func checkFileContents(filePath, lines string) (bool, error) {
 	return true, nil
 }
 
+func checkFileContains(filePath, lines string) (bool, error) {
+	content, err := os.ReadFile(filePath)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			return false, nil
+		}
+		return false, err
+	}
+
+	if !strings.Contains(strings.Trim(string(content), "\n"), strings.Trim(lines, "\n")) {
+		return false, nil
+	}
+
+	return true, nil
+}
+
 func checkOrCreateDirectory(path string) error {
 	_, err := os.Stat(path)
 	if !errors.Is(err, fs.ErrNotExist) {
